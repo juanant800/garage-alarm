@@ -16,7 +16,7 @@ jobs:
 
       - name: Descomprimir proyecto
         run: |
-          if [ -f GarageAlarm.zip ]; then unzip -q -o GarageAlarm.zip; fi
+          for z in *.zip; do unzip -q -o "$z"; done
           if [ -d GarageAlarm ]; then echo "PROJECT_DIR=GarageAlarm" >> "$GITHUB_ENV"; else echo "PROJECT_DIR=." >> "$GITHUB_ENV"; fi
 
       - uses: actions/setup-java@v4
