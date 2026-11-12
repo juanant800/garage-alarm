@@ -19,6 +19,12 @@ jobs:
           for z in *.zip; do unzip -q -o "$z"; done
           if [ -d GarageAlarm ]; then echo "PROJECT_DIR=GarageAlarm" >> "$GITHUB_ENV"; else echo "PROJECT_DIR=." >> "$GITHUB_ENV"; fi
 
+      - name: Corregir codigo
+        run: |
+          cd "$PROJECT_DIR"
+          sed -i 's/fun setDefaultCar(id: String)/fun chooseCar(id: String)/' app/src/main/java/com/garagealarm/AlarmViewModel.kt
+          sed -i 's/vm\.setDefaultCar(/vm.chooseCar(/' app/src/main/java/com/garagealarm/Screens.kt
+
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
